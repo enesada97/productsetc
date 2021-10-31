@@ -1,0 +1,35 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li style="text-align: center;" class="nav-item sidebar-category">
+      <img width="50%" src="../../../assets/images/faces/face1.jpg" alt="">
+      <span></span>
+    </li>
+    <li class="nav-item sidebar-category">
+      <p>--Menu</p>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/main/products']" routerLinkActive="bg-primary" >
+        <i class="mdi mdi-view-headline menu-icon"></i>
+        <span class="menu-title">Product List</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <i class="mdi mdi-account menu-icon"></i>
+        <span class="menu-title">Managements</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="auth">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link"> User List </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a (click)="logout()" class="nav-link">
+        <i class="mdi mdi-logout menu-icon"></i>
+        <span class="menu-title">Logout</span>
+      </a>
+    </li>
+  </ul>
+</nav>

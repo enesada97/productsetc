@@ -1,0 +1,137 @@
+<div class="how-section1">
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <mat-tab-group
+        style="width: 100%"
+        [backgroundColor]="'warn'"
+        animationDuration="500ms"
+      >
+        <mat-tab label="Product Detail">
+          <div
+            class="card"
+            style="background-color: #223e9c; margin: 10px; color: white"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4 how-img">
+                  <img
+                    style="width: 100% !important"
+                    src="{{ product.image }}"
+                    class="rounded-circle img-fluid"
+                    alt=""
+                  />
+                </div>
+                <div class="col-md-8">
+                  <h3>
+                    {{ product.name }}<span>{{ product.price }} $</span>
+                  </h3>
+                  <p class="text-muted pt-4 mb-5">
+                    Freedom to work on ideal projects. On GetLance, you run your
+                    own business and choose your own clients and projects. Just
+                    complete your profile and we’ll highlight ideal jobs. Also
+                    search projects, and respond to client invitations. Wide
+                    variety and high pay. Clients are now posting jobs in
+                    hundreds of skill categories, paying top price for great
+                    work. More and more success. The greater the success you
+                    have on projects, the more likely you are to get hired by
+                    clients that use GetLance.
+                  </p>
+                  <div class="mb-2 d-flex justify-content-between w-50">
+                    <p>Total Comments :<span> {{totalComment}}</span></p>
+                    <p>Avarage Rating :<span> {{totalAvarage|number:'1.1-1'}}</span></p>
+                  </div>
+                  <div>
+                    <star-rating
+                      style="text-align: end"
+                      [value]="product?.score!"
+                      [totalstars]="5"
+                      checkedcolor="yellow"
+                      uncheckedcolor="black"
+                      size="75"
+                      [readonly]="true"
+                    ></star-rating>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Comments">
+          <div class="card">
+            <div class="card-body">
+              <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-8">
+                    <div class="comment-box ml-2">
+                      <h4>Add a comment</h4>
+                      <star-rating [value]="0" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="24px" [readonly]="false" (rate)="onRate($event)"></star-rating>
+                      <form [formGroup]="commentForm" (ngSubmit)="submit()">
+                        <div class="comment-area">
+                          <textarea
+                          formControlName="description"
+                            class="form-control"
+                            placeholder="what is your view?"
+                            rows="4"
+                          ></textarea>
+                        </div>
+                        <div class="comment-btns mt-2">
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="pull-left">
+                                <button type="reset" class="btn btn-success btn-sm">
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="pull-right">
+                                <button [disabled]="!isRated" type="submit" class="btn btn-success send btn-sm">
+                                  Send <i class="fa fa-long-arrow-right ml-1"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                  <div class="col-md-8">
+                    <div *ngFor="let item of comments" class="card p-3 mt-2">
+                      <div
+                        class="
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                        "
+                      >
+                        <div class="user d-flex flex-row align-items-center">
+                          <img
+                            src="https://i.imgur.com/hczKIze.jpg"
+                            width="30"
+                            class="user-img rounded-circle mr-2"
+                          />
+                          <span
+                            ><small class="font-weight-bold text-primary"
+                              >{{item.username}}</small
+                            >
+                            <small class="font-weight-bold">
+                              {{item.description}}</small
+                            ></span
+                          >
+                        </div>
+                        <small><star-rating [value]="item?.rate!" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="24px" [readonly]="true"></star-rating></small>
+                        <small>{{item.date|date:"MMM.dd.yyyy"}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
